@@ -2,7 +2,7 @@
 
 **Paper Title:** Case-Based Prompt Learning for SO2 Pump Scheduling
 
-This directory contains a clean Python implementation of the paper method described in `work_iccbr/6658.tex`:
+Wet flue gas desulfurization (WFGD) plants must schedule circulation pumps to keep outlet SO2 within limits while limiting auxiliary power and equipment wear. This supervisory task is difficult because measurements are noisy, operating conditions drift, and every action must satisfy hard plant rules. Existing rule-based controllers are easy to certify but adapt poorly, whereas fine-tuned models require repeated retraining and provide limited operational justification. We address this gap with Case-Based Prompt Learning (CBPL), a case-based decision framework in which a large language model serves as the adaptation engine rather than the memory itself. CBPL stores each decision episode as a case, retrieves semantically similar operating precedents to ground the next action, and updates a Lesson Guidebook that consolidates repeatedly supported adaptations without modifying model weights. This design preserves the core CBR properties of precedent-based reuse, revision, and auditability because each recommendation can be traced to retrieved cases, explicit safety rules, and consolidated lessons. On 1,714 decision episodes distilled from roughly 3 million 10-second measurements from three WFGD units, CBPL improves action accuracy by 17.8 percentage points over a rule-based baseline and by 6.3 percentage points over PID, while maintaining 98.7% rule compliance and reducing switch rate by 54.4% relative to PID.
 
 - case memory over decision episodes
 - retrieval over compact textual state summaries
