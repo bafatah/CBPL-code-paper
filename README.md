@@ -1,0 +1,30 @@
+# CBPL Paper Code
+
+This directory contains a clean Python implementation of the paper method described in `work_iccbr/6658.tex`:
+
+- case memory over decision episodes
+- retrieval over compact textual state summaries
+- a lesson guidebook with `ADD`, `EDIT`, `UPGRADE`, and `DOWNGRADE`
+- a prompt composer that assembles seed rules, lessons, retrieved cases, and the current state
+- a rule gate that enforces one-step actions plus the pH and minimum-pump constraints
+- a lightweight local decider so the pipeline is runnable without reproducing the paper experiments
+- an optional Qwen/DashScope-backed decider for paper-aligned prompt inference
+
+## Layout
+
+- `data.py`: parses the JSON supervision dataset into structured decision episodes
+- `rules.py`: seed safety rules, grade fit checks, and the rule gate
+- `memory.py`: case records and semantic retrieval
+- `guidebook.py`: lesson consolidation
+- `prompting.py`: prompt assembly
+- `engine.py`: end-to-end CBPL orchestration
+- `qwen.py`: optional Qwen client and decider
+- `tests/`: focused unit tests for the core paper logic
+
+## Notes
+
+- This implementation is intentionally training-free and does not run the paper’s experiments.
+- The provided JSON dataset appears to contain expert decision demonstrations rather than post-action plant outcomes, so the bootstrapped case base treats those demonstrations as trusted precedents.
+- If `BAILIAN_CODING_PLAN_API_KEY`, `DASHSCOPE_API_KEY`, or `QWEN_API_KEY` is present, `CBPLSystem.from_env()` will build a Qwen-backed decider automatically.
+- If no Qwen key is configured, `CBPLSystem.from_env()` falls back to the local heuristic decider.
+- To move closer to the exact paper setup, keep the Qwen decider and connect richer outcome logs for revise/retain updates.
