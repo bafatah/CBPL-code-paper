@@ -1,5 +1,7 @@
 # CBPL Paper Code
 
+**Paper Title:** Case-Based Prompt Learning for SO2 Pump Scheduling
+
 This directory contains a clean Python implementation of the paper method described in `work_iccbr/6658.tex`:
 
 - case memory over decision episodes
